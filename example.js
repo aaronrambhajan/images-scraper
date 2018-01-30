@@ -6,13 +6,22 @@ var Scraper = require ('./index')
   , pics = new Scraper.Picsearch()
   , yahoo = new Scraper.Yahoo();
 
-// will take ALOT of time if num=undefined
+// Get the user's query. 
+var query = '';
+process.argv.forEach(function (val, index, array) {
+	if (index >= 2) {
+		query += val + ' ';
+	}
+});
+
+console.log(query);
+
 google.list({
-	keyword: 'coca cola',
-	num: 10,
-	detail: true,
+	keyword: query,
+	num: 50,
+	detail: false,
 	nightmare: {
-		show: true
+		show: false
 	},
   advanced: {
     imgType: 'photo', // options: clipart, face, lineart, news, photo
@@ -21,7 +30,7 @@ google.list({
   }
 })
 .then(function (res) {
-	console.log('first 10 results from google', res);
+	console.log('', res);
 }).catch(function(err) {
 	console.log('err',err);
 });
@@ -29,32 +38,4 @@ google.list({
 // listening on events is also possible
 google.on('result', function(item) {
 	console.log('result', item);
-});
-
-bing.list({
-	keyword: 'banana',
-	num: 10
-})
-.then(function (res) {
-	console.log('first 10 results from bing', res);
-}).catch(function(err) {
-	console.log('err',err);
-});
-
-pics.list({
-	keyword: 'banana',
-	num: 10,
-}).then(function (res) {
-	console.log('out',res);
-}).catch(function (err) {
-	console.log('err',err);
-});
-
-yahoo.list({
-	keyword: 'banana',
-	num: 10,
-}).then(function (res) {
-	console.log('results', res);
-}).catch(function (err) {
-	console.log('err',err);
 });
