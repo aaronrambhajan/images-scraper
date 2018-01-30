@@ -1,5 +1,5 @@
-# images-scraper
-This is a program written by Peter Evers that uses Nightmare to scrape Google images. **I altered it to make building large image databases incredibly simple.** I did this by adding scripts written in Bash and Python, and made adjustments to Peter's JavaScript code to enable cmdline queries that automatically download images.
+# image-downloader
+This is a program written by Peter Evers that uses Nightmare to scrape Google images. **I altered it to make building large image databases incredibly simple.** I did this by adding scripts written in Bash and Python, and by making adjustments to Peter's JavaScript code to enable cmdline queries that automatically download images.
  
 # Installation
 ```npm install images-scraper```
