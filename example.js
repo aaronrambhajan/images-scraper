@@ -1,32 +1,39 @@
 'use strict'
-
 var Scraper = require ('./index')
-  , google = new Scraper.Google()
-  , bing = new Scraper.Bing()
-  , pics = new Scraper.Picsearch()
-  , yahoo = new Scraper.Yahoo();
+  , google = new Scraper.Google();
 
-// Get the user's query. 
-var query = '';
-process.argv.forEach(function (val, index, array) {
-	if (index >= 2) {
-		query += val + ' ';
-	}
-});
+// Parse the user's query.
+var queryStr = process.argv[2];
+var queryArr = queryStr.split(" ");
+var testQueryNum = queryArr[queryArr.length-1];
+var test = parseInt(testQueryNum);
+var numQueries;
+var query;
 
-console.log(query);
+// Check for last arg.
+if (isNaN(test)) {
+	numQueries = "10";
+	query = queryArr.join(" ");
+} else {
+	numQueries = testQueryNum;
+	query = (queryArr.slice(0, queryArr.length-1)).join(" ");
+}
+
+console.log(query); // stdout used by Python to write filenames.
 
 google.list({
 	keyword: query,
-	num: 50,
+	num: numQueries,
 	detail: false,
 	nightmare: {
 		show: false
 	},
+
+  // Feel free to change advanced parameters.
   advanced: {
-    imgType: 'photo', // options: clipart, face, lineart, news, photo
-    resolution: undefined, // options: l(arge), m(edium), i(cons), etc.
-    color: undefined // options: color, gray, trans
+    imgType: 'photo', // clipart, face, lineart, news, photo
+    resolution: undefined, // l(arge), m(edium), i(cons), etc.
+    color: undefined // color, gray, trans
   }
 })
 .then(function (res) {
@@ -35,7 +42,6 @@ google.list({
 	console.log('err',err);
 });
 
-// listening on events is also possible
 google.on('result', function(item) {
 	console.log('result', item);
 });

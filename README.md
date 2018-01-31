@@ -4,11 +4,19 @@ This is a program written by Peter Evers that uses Nightmare to scrape Google im
 # Installation
 ```npm install images-scraper```
 
-# Running
-```./get_links.sh garbage can```  
+Note: You will need Node.js and Python3 installed to run this.
 
-This will download images for the query "garbage can", and seen in the image below. You can chain queries in a shell script, as you'll see I've done in the file ```example.sh```. I have not yet enabled a cmdline parameter to change the number of images downloaded, though that can be directly manipulated through ```example.js```.   
+# Running
+```./get_links.sh garbage can 34``` 
+
+This will download *34* images for the query *garbage can*. However, you can choose to leave out the number of images downloaded, as follows from the next query:
+
+```./get_links.sh garbage can```
+
+This would default to downloading 10 images.
+
+Additonally, you can chain queries in a shell script, as you'll see I've done in the file ```example.sh```. You can also directly manipulate advanced image parameters through ```example.js```.   
   
-  
+
   
 ![alt text](https://i.imgur.com/Ld0hkU8.png)
