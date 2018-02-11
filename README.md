@@ -4,7 +4,13 @@ This is a program written by Peter Evers that uses Nightmare to scrape Google im
 # Installation
 ```npm install images-scraper```
 
-Note: You will need Node.js and Python3 installed to run this.
+Note: You will need Node.js and Python3 installed to run this. If you don't have those, write these commands into terminal:
+```brew install node```
+```brew install python3```
+```pip3 install requests```
+Download this repo, then...
+```npm install images-scraper```
+```cd /location/of/this/folder/```
 
 # Running
 ```./get_links.sh garbage can 34``` 
